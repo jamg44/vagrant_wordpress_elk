@@ -12,6 +12,7 @@ Vagrant.configure("2") do |config|
       vb.default_nic_type = "virtio"
     end
     ubuntu1.vm.provision :shell, :path => "install_wordpress.sh"
+    ubuntu1.vm.provision :shell, :path => "install_filebeat.sh"
     # ubuntu1.vm.synced_folder ".", "/var/www"
   end
   # config.vm.define "ubuntu2" do |ubuntu2|
