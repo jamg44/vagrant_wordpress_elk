@@ -9,14 +9,11 @@ This vagrant box installs Wordpress, Elasticsearch, Logstash, and Kibana.
 
 ## Up and SSH
 
-Edit this files to set the passwords:
+Edit this files to set the passwords and IPs:
 
 - install_wordpress.sh
-
-Edit this files to set the IPs (if changed from the original):
-
 - install_filebeat.sh
-
+- install_logstash.sh
 
 To start the vagrant box run:
 

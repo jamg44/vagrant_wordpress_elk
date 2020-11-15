@@ -1,16 +1,13 @@
 
 # Install Filebeat (https://www.elastic.co/es/downloads/beats/filebeat)
 
-LOGSTASH_SERVER="192.168.100.2:5044"
+LOGSTASH_SERVER="192.168.100.11:5044"
 
-# su - vagrant
-# wget https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.10.0-linux-x86_64.tar.gz
-# tar xvzf filebeat-7.10.0-linux-x86_64.tar.gz
-# cd filebeat-7.10.0-linux-x86_64
-
+# Download & install client
 curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.10.0-amd64.deb
 sudo dpkg -i filebeat-7.10.0-amd64.deb
 
+# Setup
 mv /etc/filebeat/filebeat.yml /etc/filebeat/filebeat_original.yml
 cat << EOF | sudo tee /etc/filebeat/filebeat.yml
 filebeat.inputs:
