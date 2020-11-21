@@ -25,6 +25,7 @@ Vagrant.configure("2") do |config|
       vb.customize ["modifyvm", :id, "--cpus", "2", "--memory", "2048"]
       vb.default_nic_type = "virtio"
     end
-    ubuntu2.vm.provision :shell, :path => "install_logstash.sh"
+    ubuntu2.vm.provision :shell, :path => "install_elasticsearch.sh"
+    # ubuntu2.vm.provision :shell, :path => "install_logstash.sh"
 end
 end
