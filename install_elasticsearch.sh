@@ -8,7 +8,10 @@
 # https://www.elastic.co/guide/en/elasticsearch/reference/7.10/deb.html
 curl -L -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.10.0-amd64.deb
 sudo dpkg -i elasticsearch-7.10.0-amd64.deb
+sudo rm -f elasticsearch-7.10.0-amd64.deb
 
 sudo /bin/systemctl daemon-reload
 sudo /bin/systemctl enable elasticsearch.service
 sudo systemctl start elasticsearch.service
+
+# Config location: /etc/elasticsearch/elasticsearch.yml

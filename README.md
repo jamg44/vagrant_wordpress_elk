@@ -1,6 +1,6 @@
 # Vagrant box to deploy Wordpress & ELK in 2 Ubuntu VMs
 
-This vagrant box installs Wordpress, Elasticsearch, Logstash, and Kibana.
+This vagrant box installs Wordpress, ELK Stack v7.10.0 (Elasticsearch, Logstash, and Kibana) and Filebeat.
 
 ## Prerequisites
 
@@ -19,9 +19,19 @@ To start the vagrant box run:
 
     vagrant up
 
-To log in to the machine run:
+To log in to the machines run:
 
-    vagrant ssh
+    vagrant ssh elk
+
+or:
+
+    vagrant ssh wp
+
+## Exposed ports
+
+- Wordpress http://localhost:8081
+- Elasticsearch http://localhost:9200
+- Kibana http://localhost:5601
 
 ## Test Filebeat
 

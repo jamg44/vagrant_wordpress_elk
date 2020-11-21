@@ -28,4 +28,6 @@ EOF
 
 sudo filebeat modules enable system apache mysql
 
-sudo service filebeat start
+sudo /bin/systemctl daemon-reload
+sudo /bin/systemctl enable filebeat.service
+sudo systemctl start filebeat.service

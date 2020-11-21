@@ -1,31 +1,34 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 Vagrant.configure("2") do |config|
-  # config.vm.define "ubuntu1" do |ubuntu1|
-  #   ubuntu1.vm.box = "ubuntu/bionic64"
-  #   ubuntu1.vm.box_check_update = false
-  #   ubuntu1.vm.hostname = "ubuntu1"
-  #   ubuntu1.vm.network "private_network", ip: "192.168.100.10", nic_type: "virtio", virtualbox__intnet: "keepcoding"
-  #   ubuntu1.vm.network "forwarded_port", guest: 80, host: 8081
-  #   ubuntu1.vm.provider "virtualbox" do |vb|
+  config.vm.define "elk" do |elk|
+    elk.vm.box = "ubuntu/bionic64"
+    elk.vm.box_check_update = false
+    elk.vm.hostname = "elk"
+    elk.vm.network "private_network", ip: "192.168.100.11", nic_type: "virtio", virtualbox__intnet: "keepcoding"
+    elk.vm.network "forwarded_port", guest: 9200, host: 9200
+    elk.vm.network "forwarded_port", guest: 5601, host: 5601
+    # elk.vm.disk :disk, name: "primary_disk", primary: true, size: "50GB"
+    elk.vm.provider "virtualbox" do |vb|
+      vb.customize ["modifyvm", :id, "--cpus", "2", "--memory", "3572"]
+      vb.default_nic_type = "virtio"
+    end
+    elk.vm.provision :shell, :path => "install_elasticsearch.sh"
+    elk.vm.provision :shell, :path => "install_kibana.sh"
+    elk.vm.provision :shell, :path => "install_logstash.sh"
+  end
+  # config.vm.define "wp" do |wp|
+  #   wp.vm.box = "ubuntu/bionic64"
+  #   wp.vm.box_check_update = false
+  #   wp.vm.hostname = "wp"
+  #   wp.vm.network "private_network", ip: "192.168.100.10", nic_type: "virtio", virtualbox__intnet: "keepcoding"
+  #   wp.vm.network "forwarded_port", guest: 80, host: 8081
+  #   wp.vm.provider "virtualbox" do |vb|
   #     vb.default_nic_type = "virtio"
   #     vb.customize ["modifyvm", :id, "--cpus", "2", "--memory", "512"]
   #   end
-  #   ubuntu1.vm.provision :shell, :path => "install_wordpress.sh"
-  #   ubuntu1.vm.provision :shell, :path => "install_filebeat.sh"
-  #   # ubuntu1.vm.synced_folder ".", "/var/www"
+  #   wp.vm.provision :shell, :path => "install_wordpress.sh"
+  #   wp.vm.provision :shell, :path => "install_filebeat.sh"
+  #   # wp.vm.synced_folder ".", "/var/www"
   # end
-  config.vm.define "ubuntu2" do |ubuntu2|
-    ubuntu2.vm.box = "ubuntu/bionic64"
-    ubuntu2.vm.box_check_update = false
-    ubuntu2.vm.hostname = "ubuntu2"
-    ubuntu2.vm.network "private_network", ip: "192.168.100.11", nic_type: "virtio", virtualbox__intnet: "keepcoding"
-    ubuntu2.vm.network "forwarded_port", guest: 80, host: 8082
-    ubuntu2.vm.provider "virtualbox" do |vb|
-      vb.customize ["modifyvm", :id, "--cpus", "2", "--memory", "2048"]
-      vb.default_nic_type = "virtio"
-    end
-    ubuntu2.vm.provision :shell, :path => "install_elasticsearch.sh"
-    # ubuntu2.vm.provision :shell, :path => "install_logstash.sh"
-end
 end
