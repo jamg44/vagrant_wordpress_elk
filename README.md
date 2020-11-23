@@ -1,4 +1,6 @@
-# Vagrant box to deploy Wordpress & ELK in 2 Ubuntu VMs
+# Vagrant box to deploy Wordpress & ELK into two Ubuntu VMs
+
+![diagram](diagram.png "Diagram")
 
 This vagrant box installs Wordpress, ELK Stack v7.10.0 (Elasticsearch, Logstash, and Kibana) and Filebeat.
 
@@ -19,7 +21,7 @@ To start the vagrant box run:
 
     vagrant up
 
-To log in to the machines run:
+To access consoles of the machines run:
 
     vagrant ssh elk
 
@@ -33,13 +35,22 @@ or:
 - Elasticsearch http://localhost:9200
 - Kibana http://localhost:5601
 
-In Kibana you can create an index patter with:
+## Wordpress
+
+Wordpress has been installed following [this setup](https://ubuntu.com/tutorials/install-and-configure-wordpress).
+
+## Kibana
+
+In Kibana you can create an index pattern with:
 
     filebeat-*
 
-## Test Filebeat
+### Test Filebeat
+
+If Filebeat does not work, you can test it if you want, accessing with ssh to wp virtual machine with:
 
 ```sh
+vagrant ssh wp
 cd /etc/filebeat
 sudo ./filebeat test config -e
 ```
