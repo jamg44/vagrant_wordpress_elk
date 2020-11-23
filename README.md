@@ -33,6 +33,10 @@ or:
 - Elasticsearch http://localhost:9200
 - Kibana http://localhost:5601
 
+In Kibana you can create an index patter with:
+
+    filebeat-*
+
 ## Test Filebeat
 
 ```sh
